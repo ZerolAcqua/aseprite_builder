@@ -67,7 +67,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
        matrix:
-         os: [windows-latest, ubuntu-latest, macOS-latest]
+         # os: [windows-latest, ubuntu-latest, macOS-latest]
+         os: [windows-latest, ubuntu-latest]
        fail-fast: false
     steps:
       - name: (Windows) Install dependencies
@@ -79,7 +80,7 @@ jobs:
         run: Remove-Item -Recurse -Force "C:\Program Files\OpenSSL\"
       - name: (Ubuntu) Install dependencies
         if: matrix.os == 'ubuntu-latest'
-        run: sudo apt update && sudo apt install -y cmake ninja-build libxcursor-dev libxi-dev libgl1-mesa-dev libfontconfig-dev
+        run: sudo apt update && sudo apt install -y cmake ninja-build libxcursor-dev libxi-dev libgl1-mesa-dev libfontconfig-dev libxrandr-dev
       - name: (macOS) Install dependencies
         if: matrix.os == 'macOS-latest'
         run: brew install ninja p7zip
